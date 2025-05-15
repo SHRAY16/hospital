@@ -1,0 +1,17 @@
+{% load static %}
+
+<h2>Welcome, Dr. {{ request.user.username }}</h2>
+<p>Email: {{ request.user.email }}</p>
+<p>Address: 
+  {{ request.user.address_line1|default:"Ravet" }}, 
+  {{ request.user.city|default:"Pune" }}, 
+  {{ request.user.state|default:"Maharashtra" }} - 
+  {{ request.user.pincode|default:"440303" }}
+</p>
+
+{% if request.user.profile_picture %}
+  <img src="{{ request.user.profile_picture.url }}" alt="Profile Picture" style="max-width:200px; height:auto;">
+{% else %}
+  <img src="{% static 'images/default_profile.png' %}" alt="Default Profile Picture" style="max-width:200px; height:auto;">
+{% endif %}
+
